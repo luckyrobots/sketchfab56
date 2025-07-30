@@ -1,0 +1,24 @@
+{
+    "FileVersion": 3,
+    "Version": 1,
+    "VersionName": "1.0",
+    "FriendlyName": "Sketchfab for Unreal",
+    "Description": "Integrates the Sketchfab API to allow searching and importing models at runtime.",
+    "Category": "Networking",
+    "CreatedBy": "Gemini",
+    "CreatedByURL": "",
+    "DocsURL": "",
+    "MarketplaceURL": "",
+    "SupportURL": "",
+    "CanContainContent": false,
+    "IsBetaVersion": true,
+    "IsExperimentalVersion": false,
+    "Installed": false,
+    "Modules": [
+        {
+            "Name": "SketchfabUnreal",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+        }
+    ]
+} 

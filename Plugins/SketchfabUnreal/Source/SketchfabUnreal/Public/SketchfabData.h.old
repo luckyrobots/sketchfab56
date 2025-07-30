@@ -1,0 +1,162 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "SketchfabData.generated.h"
+
+USTRUCT(BlueprintType)
+struct FSketchfabThumbnail
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString Uid;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	int32 Width = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	int32 Height = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString Url;
+};
+
+USTRUCT(BlueprintType)
+struct FSketchfabThumbnailList
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	TArray<FSketchfabThumbnail> Images;
+};
+
+USTRUCT(BlueprintType)
+struct FSketchfabUser
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString Uid;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString Username;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString DisplayName;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString Account;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString ProfileUrl;
+};
+
+USTRUCT(BlueprintType)
+struct FSketchfabModel
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString Uid;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString Name;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	bool bIsDownloadable = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString Description;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	int32 FaceCount = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	int32 VertexCount = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FSketchfabThumbnailList Thumbnails;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FSketchfabUser User;
+};
+
+USTRUCT(BlueprintType)
+struct FSketchfabSearchResponse
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	bool bSuccess = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString Error;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	TArray<FSketchfabModel> Results;
+};
+
+USTRUCT(BlueprintType)
+struct FSketchfabAccessTokenResponse
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	bool bSuccess = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString Error;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString AccessToken;
+};
+
+USTRUCT(BlueprintType)
+struct FSketchfabModelImportResponse
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	bool bSuccess = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FString Error;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	FSketchfabModel ModelInfo;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Sketchfab")
+	AActor* SpawnedActor = nullptr;
+};
+
+USTRUCT(BlueprintType)
+struct FSketchfabSearchRequest
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadWrite, Category = "Sketchfab")
+	FString Keywords;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Sketchfab")
+	bool bDownloadable = true;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Sketchfab", meta = (ClampMin = "0"))
+	int32 MinFaceCount = 0;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Sketchfab", meta = (ClampMin = "0"))
+	int32 MaxFaceCount = 0;
+	
+	UPROPERTY(BlueprintReadWrite, Category = "Sketchfab")
+	TArray<FString> Tags;
+};
+
+USTRUCT(BlueprintType)
+struct FSketchfabImportOptions
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadWrite, Category = "Sketchfab")
+	bool bUseCache = true;
+}; 
